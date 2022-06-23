@@ -1,0 +1,20 @@
+/*proc import datafile="/home/u61678994/test/practice/AI_Companies.csv"
+	dbms=csv
+	out=ai_company_list
+	replace;
+run;*/
+
+data myclass;
+	set sashelp.cars;
+run;
+
+/*proc print data=myclass;
+	where Origin in ("Asia","Europe") and Make like "A%";
+run;*/
+
+%let CarType=SUV;
+
+proc means data=myclass;
+	where Type="&CarType";
+run;
+	
