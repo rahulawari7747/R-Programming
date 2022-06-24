@@ -1,0 +1,18 @@
+proc import datafile="/home/u61678994/test/practice/Data_Science_Jobs_in_India.csv"
+	dbms=csv
+	out=df
+	replace;
+run;
+
+data data_science_file;
+	set df;
+	where job_title in ("Data Scientist");
+run;
+
+data df2;
+	set data_science_file;
+	where min_experience=2;
+run;
+
+proc print data=df2;
+run;
