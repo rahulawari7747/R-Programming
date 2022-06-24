@@ -18,3 +18,21 @@ proc means data=myclass;
 	where Type="&CarType";
 run;
 	
+
+proc import datafile="/home/u61678994/test/practice/Data_Science_Jobs_in_India.csv"
+	dbms=csv
+	out=df
+	replace;
+run;
+
+data data_science_file;
+	set df;
+	where job_title in ("Data Scientist");
+run;
+
+proc sort data=data_science_file out=df2;
+	by avg_salary;
+run;
+
+proc print data=df2;
+run;
