@@ -6,12 +6,16 @@ run;
 
 data data_science_file;
 	set df;
-	where job_title in ("Data Scientist");
+	where job_title in ("Data Scientist","Data Analyst");
 run;
 
 data df2;
 	set data_science_file;
 	where min_experience=2;
+	where company_name like "C%";
+	company_name=UPCASE(company_name);
+	x=avg_salary*100.0;
+	keep company_name job_title avg_salary min_salary max_salary x;
 run;
 
 proc print data=df2;
