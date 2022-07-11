@@ -1,0 +1,14 @@
+proc import datafile="/home/u61678994/test/practice/Data_Science_Jobs_in_India.csv"
+	dbms=csv
+	out=df
+	replace;
+run;
+
+data data_science_file data_other_file;
+	set df;
+	if job_title="Data Scientist" then output data_science_file;
+	else output data_other_file;
+run;
+
+proc print data=data_other_file;
+run;
